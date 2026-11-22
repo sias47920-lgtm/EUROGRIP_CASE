@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Eurogrip GripProof (concept prototype)</title>
+<style>
+:root{--b:#0054A6;--n:#0b2545;--r:#d71920;--bg:#f2f5f9;--c:#fff;--t:#14243a;--m:#5b6b80;--l:#d9e2ec;--bt:#0054A6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a1524;--c:#12233a;--t:#e8eef6;--m:#9fb0c4;--l:#243a56;--bt:#6aa9f0;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0a1524;--c:#12233a;--t:#e8eef6;--m:#9fb0c4;--l:#243a56;--bt:#6aa9f0;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--t);font:15px/1.5 "Trebuchet MS","Segoe UI",system-ui,sans-serif}
+#app{max-width:520px;margin:0 auto;min-height:100vh;padding-bottom:84px;background:var(--bg)}
+h1{font:800 44px/1 "Arial Narrow","Franklin Gothic Medium",Impact,sans-serif;letter-spacing:.5px;margin:18px 0 10px}
+h2{font:700 20px/1.2 "Arial Narrow","Franklin Gothic Medium",sans-serif;margin:22px 0 10px}h3{margin:0 0 6px;font-size:16px}
+p{margin:6px 0}.pad{padding:0 16px}.note{font-size:12px;color:var(--m)}
+.hero{background:var(--n);color:#fff;padding:20px 18px 28px;position:relative;overflow:hidden}
+.hero p{max-width:30ch;color:#cfe0f5}.wm{font-weight:800;letter-spacing:3px;font-size:14px}.wm small{font-weight:400;letter-spacing:0;opacity:.6;margin-left:8px;font-size:11px}
+.tyre{position:absolute;right:-60px;top:30px;width:230px;opacity:.9}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;position:relative}
+.btn{border:0;border-radius:10px;padding:12px 16px;font:700 14px inherit;font-family:inherit;cursor:pointer;background:var(--b);color:#fff}
+.btn.red{background:var(--r)}.btn.ghost{background:transparent;border:1.5px solid #9fc0e8;color:#fff}.btn.sm{padding:8px 12px;font-size:13px}.btn.out{background:transparent;color:var(--bt);border:1.5px solid var(--bt)}
+.btn:focus-visible,.chip:focus-visible,.nav button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #f2a33a;outline-offset:2px}
+.card{background:var(--c);border:1px solid var(--l);border-radius:14px;padding:14px;margin:0 0 12px;width:100%;text-align:left;font:inherit;color:inherit;display:block}
+button.card{cursor:pointer;border-left:5px solid var(--b)}button.card i{font-style:normal;color:var(--bt);font-weight:700}
+.tag{font-size:12px;background:var(--b);color:#fff;border-radius:6px;padding:2px 8px;margin-left:8px}
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.flow div{background:var(--c);border:1px solid var(--l);border-top:4px solid var(--r);border-radius:10px;padding:10px;font-size:13px}.flow b{display:block}
+.top{background:var(--n);color:#fff;padding:12px 16px}.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1.5px solid var(--l);background:var(--c);color:var(--t);border-radius:999px;padding:7px 12px;font:600 13px inherit;font-family:inherit;cursor:pointer}
+.chip.on{background:var(--b);border-color:var(--b);color:#fff}.top .chip{background:transparent;color:#cfe0f5;border-color:#3b5a85}.top .chip.on{background:#fff;color:var(--n)}
+label{display:block;font-weight:700;font-size:13px;margin:14px 0 6px}
+input,select{width:100%;padding:11px;border:1.5px solid var(--l);border-radius:10px;font:inherit;background:var(--c);color:var(--t)}
+.nav{position:fixed;left:0;right:0;bottom:0;background:var(--c);border-top:1px solid var(--l);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom,0px)}
+.nav div{display:flex;width:100%;max-width:520px}.nav button{flex:1;border:0;background:none;color:var(--m);padding:12px 2px;font:600 12px inherit;font-family:inherit;cursor:pointer}.nav button.on{color:var(--bt);box-shadow:inset 0 3px 0 var(--r)}
+.bar{display:grid;grid-template-columns:110px 1fr 42px;gap:8px;align-items:center;margin:7px 0;font-size:13px}.bar i{display:block;height:9px;border-radius:5px;background:var(--l)}.bar i u{display:block;height:100%;border-radius:5px;background:var(--b)}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:7px 4px;border-bottom:1px solid var(--l);text-align:left}
+.ok{background:#e6f4ea;color:#14532d;border-radius:10px;padding:10px;margin:8px 0;font-size:13px}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ok{background:#12351f;color:#bfe8cb}}
+.wa{background:#dcf8c6;color:#111;border-radius:10px 10px 10px 2px;padding:10px;font-size:13px;max-width:85%}
+.badge{display:inline-block;background:var(--r);color:#fff;font-size:11px;border-radius:5px;padding:1px 6px;margin-left:6px}
+.err{color:var(--r);font-size:12px;margin-top:4px}.x{background:none;border:0;color:var(--m);cursor:pointer;font-size:16px}
+@media (prefers-reduced-motion:no-preference){.hero h1{animation:u .6s ease both}@keyframes u{from{opacity:0;transform:translateY(14px)}}}
+</style></head><body><div id="app"></div>
+<script>
+const SEG={c:{n:'Commuter',p:'Daily Ready',t:'Trust Every Turn',d:'The right tyre for your bike and road, kept in good shape.'},g:{n:'Gig Worker',p:'Uptime Clinics',t:'Earn Every Turn',d:'Spend less time managing maintenance and more time on the road.'},p:{n:'Premium Rider',p:'GripProof Ride Labs',t:'Own Every Turn',d:'Performance you can check for yourself.'}};
+const EV=[{id:'e1',s:'c',n:'Daily Ready tyre-check desk',w:'Sample: housing society',sl:['Sat 10:00','Sat 11:00','Sun 10:00']},{id:'e2',s:'g',n:'Pit Stop clinic (15 min)',w:'Sample: delivery hub',sl:['2:30 pm','3:00 pm','3:30 pm']},{id:'e3',s:'p',n:'GripProof Ride Lab',w:'Sample: supervised closed course',sl:['Sat 9:00','Sun 9:00']}];
+const PR=[{n:'Protorq',s:'p'},{n:'Roadhound',s:'p'},{n:'Commuter range',s:'c'},{n:'Fleet / delivery range',s:'g'}];
+const SPECS=['Tyre size','Construction','Load / speed rating','Intended use'];
+const CHK=['Tread is visibly above the wear marks','No cracks, cuts or bulges on the sidewall','Pressure checked in the last week','Valve caps are present'];
+const PH=[['Weeks 1–3: Set baseline','Interview riders and mechanics; survey consideration in 3 test and 3 control cities; onboard dealers.'],['Weeks 4–12: Run all 3 pilots','Track QR scans, check-ups, bookings and verified tyre sales. Spend capped at 25% of the budget.'],['Scale gate: Prove conversion','Expand only if consideration is up 5+ points vs control and cost per verified sale beats current promotions.']];
+const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const K='eg-gripproof-1',D=()=>({seg:'c',prof:null,log:[],rem:[],book:[],chk:{},cmp:['Protorq','Roadhound'],size:'',wa:false});
+let S=Object.assign(D(),{view:'landing',tab:'home',draft:{},sel:{},ph:0,err:''});
+try{const x=localStorage.getItem(K);if(x)Object.assign(S,JSON.parse(x))}catch(e){}
+const save=()=>{try{const{seg,prof,log,rem,book,chk,cmp,size,wa}=S;localStorage.setItem(K,JSON.stringify({seg,prof,log,rem,book,chk,cmp,size,wa}))}catch(e){}};
+const go=(v,t)=>{S.view=v;if(t)S.tab=t;S.err='';render();scrollTo(0,0)};
+const render=()=>{$('#app').innerHTML=({landing,onb,app:appv,strat})[S.view]()};
+const tyre=()=>`<svg class="tyre" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="92" fill="#06182f"/><circle cx="100" cy="100" r="86" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="12" stroke-dasharray="7 5"/><circle cx="100" cy="100" r="50" fill="#0054A6"/><circle cx="100" cy="100" r="9" fill="#fff"/></svg>`;
+const bars=(rows,max)=>rows.map(([l,v])=>`<div class="bar"><span>${l}</span><i><u style="width:${v/max*100}%"></u></i><b>${v}%</b></div>`).join('');
+
+function landing(){return `<section class="hero"><div class="wm">EUROGRIP<small>logo placeholder: add official asset</small></div>${tyre()}<h1>EVERY RIDE.<br>PROVEN.</h1><p>From everyday commutes to earning on the road and chasing the next corner, discover the Eurogrip experience built around you.</p><div class="row"><button class="btn red" data-a="onb">Find Your Grip</button><button class="btn ghost" data-a="strat">Explore GripProof</button></div></section>
+<div class="pad"><h2>Pick your ride</h2>${['c','g','p'].map(k=>`<button class="card" data-a="pick" data-k="${k}"><b>${SEG[k].n}</b><span class="tag">${SEG[k].p}</span><p>${SEG[k].d}</p><i>${SEG[k].t} →</i></button>`).join('')}
+<h2>How it connects</h2><div class="flow"><div><b>Digital</b>Sparks interest</div><div><b>Retail</b>Guides choice</div><div><b>On-ground</b>Builds trust</div></div>
+<p class="note">GripProof is a proposed campaign concept, not an official Eurogrip service. All events, slots and data are samples.</p></div>`}
+
+function readOnb(){const v=$('#veh'),k=$('#km');if(v)S.draft.veh=v.value;if(k)S.draft.km=k.value}
+function onb(){const d=S.draft,ch=(f,opts)=>`<div class="chips">${opts.map(([v,l])=>`<button class="chip ${d[f]==v?'on':''}" data-a="d" data-f="${f}" data-v="${v}">${l}</button>`).join('')}</div>`;
+return `<div class="top"><b>Find Your Grip</b></div><div class="pad"><label>Rider type</label>${ch('seg',[['c','Commuter'],['g','Gig Worker'],['p','Premium Rider']])}
+<label for="veh">Vehicle brand and model</label><input id="veh" value="${esc(d.veh||'')}" placeholder="e.g. your bike or scooter model">
+<label for="km">Distance per day (km)</label><input id="km" type="number" min="1" value="${esc(d.km||'')}">
+<label>Riding conditions</label>${ch('cond',[['City','City'],['Mixed','Mixed'],['Highway','Highway']])}
+<label>Main concern</label>${ch('con',[['Reliability','Reliability'],['Maintenance','Maintenance convenience'],['Performance','Performance']])}
+${S.err?`<p class="err" role="alert">${S.err}</p>`:''}<div class="row"><button class="btn red" data-a="finish">Build my dashboard</button><button class="btn out" data-a="home">Back</button></div>
+<p class="note">No personal details are asked for. You can change your rider type any time.</p></div>`}
+
+function reminders(){return `<h2>Maintenance reminders</h2>${S.rem.length?S.rem.map((r,i)=>`<div class="card"><label style="margin:0;font-weight:600"><input type="checkbox" style="width:auto" ${r.d?'checked':''} data-a="rdone" data-i="${i}"> <span style="${r.d?'text-decoration:line-through;color:var(--m)':''}">${esc(r.t)}</span></label><span class="note">${esc(r.w)}</span> <button class="x" data-a="rdel" data-i="${i}" aria-label="Delete reminder">✕</button></div>`).join(''):'<p class="note">No reminders yet. Add one below.</p>'}
+<div class="card"><input id="rt" placeholder="e.g. Check tyre pressure"><input id="rd" type="date" style="margin-top:8px"><button class="btn sm" style="margin-top:8px" data-a="radd">Save reminder</button>${S.err&&S.tab=='ride'?`<p class="err">${S.err}</p>`:''}</div>`}
+
+function tabHome(){const p=S.prof,s=SEG[S.seg];return `<div class="pad"><h2>${s.p}: ${s.t}</h2><p>${s.d}</p>
+<div class="card"><b>${esc(p.veh)}</b><br><span class="note">${esc(p.km)} km a day · ${p.cond} riding · Priority: ${p.con}</span></div>
+<h3>Next steps</h3><div class="row" style="margin-top:6px"><button class="btn sm" data-a="tab" data-v="tyres">${S.seg=='p'?'Compare tyres':'Find my tyre'}</button><button class="btn sm" data-a="tab" data-v="exp">${S.seg=='c'?'Book a check-up':S.seg=='g'?'Book a clinic slot':'RSVP to a Ride Lab'}</button><button class="btn sm out" data-a="tab" data-v="ride">${S.seg=='c'?'Run the tyre checklist':S.seg=='g'?'Open my log':'My events'}</button></div>
+<h2>Scan at a counter or event</h2><div class="card"><p>A QR GripProof card links a retail counter or event back to this dashboard.</p><button class="btn sm red" data-a="qr">Simulate a QR scan</button><p class="note" id="qrm"></p></div></div>`}
+
+function tabTyres(){const list=PR.filter(x=>S.seg=='p'?x.s=='p':x.s==S.seg||x.s=='c'&&S.seg=='g'&&false||x.s==S.seg);
+const sel=i=>`<select data-a="cmp" data-i="${i}">${PR.map(x=>`<option ${S.cmp[i]==x.n?'selected':''}>${x.n}</option>`).join('')}</select>`;
+return `<div class="pad"><h2>Find my tyre</h2><label for="sz">Your tyre size (printed on the sidewall)</label><input id="sz" data-a="size" value="${esc(S.size)}" placeholder="e.g. 90/90-17">
+<p class="note">${S.size?`Confirm ${esc(S.size)} against the official catalogue before buying. Fitment is never guessed here.`:'Enter your size to start.'}</p>
+<h2>Recommended range</h2>${list.map(x=>`<div class="card"><h3>${x.n}</h3><span class="note">Product photo and verified specifications load from the official catalogue (not connected in this prototype).</span><br><button class="btn sm out" style="margin-top:8px" data-a="tab" data-v="exp">Find at a retailer</button></div>`).join('')}
+<h2>Compare</h2><div class="card"><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${sel(0)}${sel(1)}</div><table>${SPECS.map(s=>`<tr><th>${s}</th><td class="note">Verify in catalogue</td><td class="note">Verify in catalogue</td></tr>`).join('')}</table><p class="note">No grip scores or wet-braking numbers are shown, because none are verified.</p></div>
+${S.seg=='p'?`<h2>Evidence hub</h2><div class="card"><b>Independent test placeholder</b><span class="badge">Sample</span><p class="note">Link real tests and reviews with published methods here. None are invented.</p></div>`:''}</div>`}
+
+function tabExp(){return `<div class="pad"><h2>Experiences</h2><p class="note">Three activations, one platform. Slots are demo only; nothing is booked outside this prototype.</p>${EV.map(e=>{const bk=S.book.find(b=>b.id==e.id);return `<div class="card" style="${e.s==S.seg?'border:2px solid var(--b)':''}"><h3>${e.n}${e.s==S.seg?'<span class="tag">For you</span>':''}</h3><span class="note">${e.w}</span>
+${bk?`<div class="ok">Demo confirmation: ${bk.slot}. <button class="x" data-a="cancel" data-id="${e.id}">Cancel</button></div>`:`<div class="chips" style="margin:10px 0">${e.sl.map(x=>`<button class="chip ${S.sel[e.id]==x?'on':''}" data-a="slot" data-id="${e.id}" data-v="${x}">${x}</button>`).join('')}</div><button class="btn sm" data-a="book" data-id="${e.id}">${e.s=='p'?'RSVP':'Book slot'}</button>${S.err==e.id?'<p class="err">Choose a slot first.</p>':''}`}</div>`}).join('')}</div>`}
+
+function tabRide(){let h='<div class="pad">';
+if(S.seg=='c'){const n=CHK.filter((_,i)=>S.chk[i]===false).length,a=Object.keys(S.chk).length==CHK.length;
+h+=`<h2>Tyre health checklist</h2>${CHK.map((q,i)=>`<div class="card"><b>${q}</b><div class="chips" style="margin-top:8px"><button class="chip ${S.chk[i]===true?'on':''}" data-a="chk" data-i="${i}" data-v="1">Yes</button><button class="chip ${S.chk[i]===false?'on':''}" data-a="chk" data-i="${i}" data-v="0">No / not sure</button></div></div>`).join('')}${a?`<div class="ok">${n?'Some items need attention. Have a tyre professional inspect your tyres.':'All clear on these checks. Keep checking regularly.'}</div>`:''}<p class="note">This checklist is educational. It does not certify that a tyre is safe.</p>`}
+if(S.seg=='g'){const ex=S.log.reduce((a,l)=>a+l.e,0),km=S.log.reduce((a,l)=>a+l.k,0);
+h+=`<h2>Maintenance log</h2><div class="card"><select id="lt"><option>Inspection</option><option>Repair</option><option>Replacement</option></select><input id="le" type="number" min="0" placeholder="Expense (₹)" style="margin-top:8px"><input id="lk" type="number" min="1" placeholder="Kilometres ridden since last entry" style="margin-top:8px"><button class="btn sm" style="margin-top:8px" data-a="ladd">Add entry</button>${S.err&&S.tab=='ride'?`<p class="err">${S.err}</p>`:''}</div>
+<div class="card"><b>Cost per km: ${km?'₹'+(ex/km).toFixed(2):'add entries'}</b><br><span class="note">Your own recorded expenses ÷ recorded km. A personal tracking metric, not a proven Eurogrip saving.</span></div>
+${S.log.map((l,i)=>`<div class="card">${l.t}: ₹${l.e} · ${l.k} km <button class="x" data-a="ldel" data-i="${i}" aria-label="Delete entry">✕</button></div>`).join('')}
+<h2>WhatsApp reminder preview</h2><label style="font-weight:400"><input type="checkbox" style="width:auto" data-a="wa" ${S.wa?'checked':''}> I agree to opt-in reminders (demo only; nothing is sent)</label>${S.wa?'<div class="wa">Tyre check due this week. Book a 15-minute Pit Stop?</div>':''}`}
+if(S.seg=='p'){const m=S.book.filter(b=>b.s=='p');h+=`<h2>My events</h2>${m.length?m.map(b=>`<div class="card">${b.n}: ${b.slot}</div>`).join(''):'<p class="note">No RSVPs yet. Open Experiences to join a Ride Lab.</p>'}`}
+return h+reminders()+'</div>'}
+
+function tabProf(){const p=S.prof;return `<div class="pad"><h2>Profile</h2><div class="card"><b>${SEG[S.seg].n}</b><br>${esc(p.veh)} · ${esc(p.km)} km a day</div><div class="row"><button class="btn sm" data-a="edit">Edit profile</button><button class="btn sm out" data-a="reset">Reset all demo data</button></div><p class="note">Data stays in this browser only.</p></div>`}
+
+function appv(){if(!S.prof)return onb();const T=[['home','Home'],['tyres','Tyres'],['exp','Events'],['ride','My Ride'],['prof','Profile']];
+return `<div class="top"><div style="display:flex;justify-content:space-between;align-items:center"><b>EUROGRIP <span style="font-weight:400;opacity:.7">GripProof</span></b><button class="chip" data-a="strat">Strategy View</button></div><div class="chips" style="margin-top:10px">${['c','g','p'].map(k=>`<button class="chip ${S.seg==k?'on':''}" data-a="seg" data-k="${k}">${SEG[k].n}</button>`).join('')}</div></div>${({home:tabHome,tyres:tabTyres,exp:tabExp,ride:tabRide,prof:tabProf})[S.tab]()}
+<nav class="nav" aria-label="Main"><div>${T.map(([k,l])=>`<button class="${S.tab==k?'on':''}" data-a="tab" data-v="${k}">${l}</button>`).join('')}</div></nav>`}
+
+function strat(){const KP=[['Consideration (survey)','Baseline, then +5 pt target'],['Qualified enquiries (QR scans)',240],['Retail visits',96],['Event participation',64],['Bookings',58],['Verified tyre purchases',21]];
+return `<div class="top"><b>Strategy View</b> <button class="chip" style="float:right" data-a="${S.prof?'app':'home'}">Close</button></div><div class="pad"><p class="note">Proposed allocations of one budget (1.5–2% of operating revenue). Two views of the same total; not additive.</p>
+<h2>By channel</h2>${bars([['Retail',40],['Digital',30],['On-ground',30]],40)}<h2>By segment</h2>${bars([['Premium',35],['Gig worker',30],['Commuter',25],['Shared proof + data',10]],40)}
+<h2>90-day pilot</h2><div class="chips">${PH.map((p,i)=>`<button class="chip ${S.ph==i?'on':''}" data-a="ph" data-i="${i}">${p[0].split(':')[0]}</button>`).join('')}</div><div class="card" style="margin-top:10px"><h3>${PH[S.ph][0]}</h3>${PH[S.ph][1]}</div>
+<h2>KPIs <span class="badge">Sample Prototype Data</span></h2><div class="card"><table>${KP.map(k=>`<tr><td>${k[0]}</td><td><b>${k[1]}</b></td></tr>`).join('')}</table><p class="note">Illustrative counts only, not campaign results.</p></div>
+<div class="card" style="background:var(--n);color:#fff;border:0"><b>Don’t just make riders recognise Eurogrip. Give each rider a reason to choose it.</b></div></div>`}
+
+document.addEventListener('click',e=>{const t=e.target.closest('[data-a]');if(!t||t.tagName=='SELECT'||t.tagName=='INPUT'&&t.type!='checkbox')return;const a=t.dataset.a,v=t.dataset.v,i=+t.dataset.i,id=t.dataset.id,k=t.dataset.k;
+if(a=='onb'){S.draft=S.prof?{...S.prof}:{seg:S.seg};go('onb')}
+else if(a=='home')go('landing');else if(a=='strat')go('strat');else if(a=='app')go('app');
+else if(a=='pick'){S.seg=k;if(S.prof){save();go('app','home')}else{S.draft={seg:k};go('onb')}}
+else if(a=='seg'){S.seg=k;save();render()}
+else if(a=='d'){readOnb();S.draft[t.dataset.f]=v;render()}
+else if(a=='finish'){readOnb();const d=S.draft;if(!d.seg||!d.veh||!d.veh.trim()||!(+d.km>0)||!d.cond||!d.con){S.err='Fill in every field. Distance must be above 0.';render();return}S.prof={...d};S.seg=d.seg;save();go('app','home')}
+else if(a=='edit'){S.draft={...S.prof};go('onb')}
+else if(a=='tab'){S.tab=v;S.err='';render();scrollTo(0,0)}
+else if(a=='qr'){$('#qrm').textContent='Demo scan: you arrived from a retail counter. Your '+SEG[S.seg].p+' profile is loaded.'}
+else if(a=='slot'){S.sel[id]=v;render()}
+else if(a=='book'){if(!S.sel[id]){S.err=id;render();return}const e2=EV.find(x=>x.id==id);S.book.push({id,s:e2.s,n:e2.n,slot:S.sel[id]});S.err='';save();render()}
+else if(a=='cancel'){S.book=S.book.filter(b=>b.id!=id);save();render()}
+else if(a=='chk'){S.chk[i]=v=='1';save();render()}
+else if(a=='ladd'){const e2=+$('#le').value,k2=+$('#lk').value;if(!(e2>=0)||$('#le').value===''||!(k2>0)){S.err='Enter an expense and kilometres above 0.';render();return}S.log.unshift({t:$('#lt').value,e:e2,k:k2});S.err='';save();render()}
+else if(a=='ldel'){S.log.splice(i,1);save();render()}
+else if(a=='radd'){const tx=$('#rt').value.trim();if(!tx){S.err='Add a short description.';render();return}S.rem.push({t:tx,w:$('#rd').value||'No date',d:false});S.err='';save();render()}
+else if(a=='rdone'){S.rem[i].d=!S.rem[i].d;save();render()}
+else if(a=='rdel'){S.rem.splice(i,1);save();render()}
+else if(a=='wa'){S.wa=!S.wa;save();render()}
+else if(a=='ph'){S.ph=i;render()}
+else if(a=='reset'){try{localStorage.removeItem(K)}catch(x){}Object.assign(S,D(),{view:'landing',tab:'home',draft:{},sel:{}});render()}});
+document.addEventListener('change',e=>{const t=e.target,a=t.dataset.a;if(a=='cmp'){S.cmp[+t.dataset.i]=t.value;save();render()}else if(a=='size'){S.size=t.value.trim();save();render()}});
+render();
+</script></body></html>
